@@ -1,0 +1,601 @@
+python-eventlet (0.30.2-4) unstable; urgency=medium
+
+  * Add upstream Python 3.10 patches.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 12 Nov 2021 09:51:40 +0100
+
+python-eventlet (0.30.2-3) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 12 to 13.
+  * Update standards version to 4.5.1, no changes needed.
+
+  [ Filippo Giunchedi ]
+  * Refresh Replace-dnspython-_compute_expiration-by-_compute_times.patch with
+    upstrem commit 51569f34767
+  * Add patches for dnspython2 compat. (Closes #989600)
+    - Check_compute_expiration_at_module_level.patch
+    - add_handling_for_new_dnspython_arguments.patch
+
+  [ Thomas Goirand ]
+  * Fix greendns.py hack when building the sphinx doc.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 26 Sep 2021 18:35:28 +0200
+
+python-eventlet (0.30.2-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 16 Aug 2021 12:36:09 +0200
+
+python-eventlet (0.30.2-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Removed patches applied upstream:
+    - 0017-py39-Add-_at_fork_reinit-method-to-Semaphores.patch
+    - 0018-pyopenssl-tsafe-module-was-deprecated-and-removed-in.patch
+    - fix-infinte-recursion-in-ssl.patch
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 08 Mar 2021 11:20:37 +0100
+
+python-eventlet (0.26.1-7) unstable; urgency=medium
+
+  * CVE-2021-21419: Malicious peer may exhaust memory on Eventlet side
+    by sending highly compressed data frame. Appled upstream patch: websocket:
+    Limit maximum uncompressed frame length to 8MiB (Closes: #988342).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 11 May 2021 08:03:43 +0200
+
+python-eventlet (0.26.1-6) unstable; urgency=medium
+
+  * Hack a modified debian/greendns.py with filename=None instead of
+    filename='/etc/resolv.conf' to replace eventlet/support/greendns.py when
+    building the sphinx doc, to avoid crash (Closes: #981720).
+    Beware that future version of Eventlet will need updated files in the
+    debian folder.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 18 Feb 2021 17:07:30 +0100
+
+python-eventlet (0.26.1-5) unstable; urgency=medium
+
+  * Drop 0012-ssl-RecursionError-on-Python3.6.patch, which is destroying SSL
+    since it got fixed upstream.
+  * Drop 0010-Fix-compilation-errors-when-installing-package-in-Py.patch, as
+    we don't support Python 2.7 anymore.
+  * Add fix-infinte-recursion-in-ssl.patch, which should fix the compat with
+    dnspython 2.x.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 28 Jan 2021 12:26:06 +0100
+
+python-eventlet (0.26.1-4) unstable; urgency=medium
+
+  * Team upload
+  * Import upstream patch to fix Semaphore objects on python3.9
+  * Import upstream patch to fix build against pyOpenSSL >= 20 (Closes: #980639)
+  * autopkgtest: run test suite
+  * debian/rules: skip running the test suite during the build. It fails
+    randomly, but that's only during the build: under autopkgtest, they
+    succeed consistely.
+
+ -- Antonio Terceiro <terceiro@debian.org>  Thu, 21 Jan 2021 09:34:22 -0300
+
+python-eventlet (0.26.1-3) unstable; urgency=medium
+
+  * Add remove-non-deterministic-test_communicate_with_poll.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Oct 2020 09:37:19 +0200
+
+python-eventlet (0.26.1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 13 Oct 2020 14:28:24 +0200
+
+python-eventlet (0.26.1-1) experimental; urgency=medium
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Remove obsolete field Name from debian/upstream/metadata (already
+    present in machine-readable debian/copyright).
+
+  [ Ondřej Nový ]
+  * New upstream release.
+  * d/copyright: Bump my copyright year.
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+  * d/patches: Rebase.
+
+  [ Thomas Goirand ]
+  * Add Replace-dnspython-_compute_expiration-by-_compute_times.patch.
+  * Add fix-test_noraise_dns_tcp.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 28 Sep 2020 17:29:05 +0200
+
+python-eventlet (0.25.2-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #954499).
+  * Add Rules-Requires-Root: no.
+  * Bump Standards-Version to 4.5.0.
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 21 Apr 2020 10:57:30 +0200
+
+python-eventlet (0.25.1-2) unstable; urgency=medium
+
+  * Bump Standards-Version to 4.4.1.
+  * Uploading to unstable.
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 18 Oct 2019 15:56:59 +0200
+
+python-eventlet (0.25.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Refresh patches.
+  * Removed patches applied upstream:
+    - 0013-New_test_crt.patch
+    - 0014-Fix-for-Python-3.7.patch
+    - 0015-more-python3.7-fixes.patch
+  * Set export NOSE_PROCESSES=-1 to do parallel testing.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 11 Sep 2019 17:39:29 +0200
+
+python-eventlet (0.24.1-2) unstable; urgency=medium
+
+  * Uploading to unstable
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 16 Jul 2019 20:16:04 +0200
+
+python-eventlet (0.24.1-1) experimental; urgency=medium
+
+  * New upstream release
+  * Bump debhelper compat level to 12 and use debhelper-compat
+  * Standards version is 4.4.0 now (no changes)
+  * d/copyright: Bump my copyright year.
+  * d/patches:
+    - 0007-Patched-test_getaddrinfo-due-netbase-update.patch:
+       Drop, applied upstream
+    - 0011-Avoid-dependency-on-enum-compat.patch:
+       Drop, applied upstream
+    - Use _imp instead of deprecated imp
+    - Rebased others
+  * Add python3-monotonic and python3-six to B-D
+  * Drop Python 2 support, because required version of
+    python-monotonic doesn't exists
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 10 Jul 2019 16:31:13 +0200
+
+python-eventlet (0.20.0-6) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Set TRAVIS env to better handle timing tests
+
+  [ Thomas Goirand ]
+  * Team upload with agreement from Ondřej Nový.
+  * Add 0015-more-python3.7-fixes.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 22 Jan 2019 17:06:21 +0100
+
+python-eventlet (0.20.0-5) unstable; urgency=medium
+
+  * Don't reset http{,s}_proxy, pybuild sets it correctly
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Bump my copyright year
+  * Fix RecursionError in ssl on Python3.6+ (Closes: #901772)
+  * Convert git repository from git-dpm to gbp layout
+  * d/p/0013-New_test_crt.patch: Add, regenerate test crt
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs
+  * Fix Python 3.7 (Closes: #903609)
+  * Bump debhelper compat level to 11
+  * Standards version is 4.2.1 now (no changes)
+  * Add upstream metadata
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 30 Sep 2018 14:39:27 +0200
+
+python-eventlet (0.20.0-4) unstable; urgency=medium
+
+  * Avoid dependency on enum-compat (Closes: #881989)
+  * Bump required version of python-setuptools to 20.6.8
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 01 Dec 2017 13:08:04 +0100
+
+python-eventlet (0.20.0-3) unstable; urgency=medium
+
+  * Depends on python-enum34 (Closes: #881989)
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 18 Nov 2017 11:31:54 +0100
+
+python-eventlet (0.20.0-2) unstable; urgency=medium
+
+  [ Thomas Goirand ]
+  * Move back the package to DPMT:
+    - Update Vcs-Browser and Vcs-Git.
+    - Update Maintainer: field.
+    - Back to using Pybuild.
+    - Removed openstack-pkg-tools b-d.
+  * Add patch (Closes: #881448):
+    - 0010-Fix-compilation-errors-when-installing-package-in-Py.patch.
+
+  [ Ondřej Nový ]
+  * d/watch: Use pypi.debian.net
+  * Add netbase to depends, socket.getprotobyname needs it
+  * d/tests: Split Python2 and Python3 tests
+  * Remove gcs@debian.org from Uploaders as he requested
+  * Use Python3 version of Sphinx for docs building
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 14 Nov 2017 23:58:06 +0100
+
+python-eventlet (0.20.0-1) unstable; urgency=medium
+
+  * Revert changes from Ondřej Nový, keep the package in OpenStack, as it's
+    used only there in the whole of Debian.
+  * Ran wrap-and-sort -bast.
+  * Updated maintainer field.
+  * Updated VCS fields.
+  * New upstream release.
+  * Removed versions of (build-)depends after stretch release.
+  * Removed breaks+replaces after stretch release.
+  * Standards-Version is now 4.1.1.
+  * Refreshed and removed patches.
+  * Add remove-test_urllib-failing-in-py36.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 29 Oct 2017 20:10:01 +0000
+
+python-eventlet (0.19.0-7) unstable; urgency=medium
+
+  * Maintainer: DPMT team
+  * Vcs-* move to DPMT
+  * d/copyright
+    - Use https in format URL
+    - Added myself for Debian part
+  * Standards-Version is 4.0.0.4 now
+  * Use pybuild
+  * Remove B-D on openstack-pkg-tools, not needed anymore
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 04 Aug 2017 22:58:55 +0200
+
+python-eventlet (0.19.0-6) unstable; urgency=medium
+
+  * Removed non-deterministic test leading to FTBFS (Closes: #857893).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 16 Mar 2017 10:21:30 +0100
+
+python-eventlet (0.19.0-5) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Ondřej Nový ]
+  * Bumped debhelper version to 10
+
+  [ Ondřej Kobližek ]
+  * Patched test_getaddrinfo due netbase update (Closes: #850508)
+
+ -- Ondřej Kobližek <koblizeko@gmail.com>  Thu, 12 Jan 2017 16:27:04 +0100
+
+python-eventlet (0.19.0-4) unstable; urgency=medium
+
+  * Patch out intersphinx extension (Closes: #840092).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 08 Oct 2016 11:52:07 +0200
+
+python-eventlet (0.19.0-3) unstable; urgency=medium
+
+  [ Thomas Goirand ]
+  * Uploading to unstable.
+  * Add remove-test_import_patched_defaults.patch.
+
+  [ Ondřej Nový ]
+  * d/s/options: extend-diff-ignore of .gitreview
+  * d/control: Using OpenStack's Gerrit as VCS URLs.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 07 Oct 2016 09:27:11 +0200
+
+python-eventlet (0.19.0-2) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/{control,copyright}: Use my @debian.org email address
+  * d/p/use-packaged-python-mock-rather-than-embedded.patch:
+    Rebased and fixed for new release
+  * Dropped
+    - d/p/enforce-tlsv1-always.patch
+    - d/p/set-defaults-to-be-tlsv1-not-sslv23.patch
+    This patches was setting TLSv1 protocol as only allowed and don't
+    allowed TLS 1.1 + 1.2. Eventlet wrapper should not change SSL settings,
+    users should use ssl.create_default_context for better/safe defaults.
+  * Dropped d/p/use-packaged-python-mock-rather-than-embedded.patch
+    - Upstream is using own version of mock and don't want to use mock as deps
+      (https://github.com/eventlet/eventlet/pull/337)
+  * Require build depends packages version at least upstream is testing in CI
+  * Added upstream patch d/p/greendns_tests_fix.patch which fix building on
+    Python 3.5
+
+  [ Thomas Goirand ]
+  * Add allow-more-busy-cpu.patch, as tests are failing in Jenkins.
+  * Using pkgos-dh_auto_install from openstack-pkg-tools (>= 52~).
+  * Correctly tests with nose & Py3.
+  * Remove tests expecting timeout on 192.0.2.1.
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 12 Aug 2016 11:13:34 +0200
+
+python-eventlet (0.19.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release
+  * Standards-Version is 3.9.8 now (no change)
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+  * Added python-subprocess32 to build dependencies
+  * Run nosetests during build and don't ignore errors
+  * Added suggests to documentation package
+
+  [ James Page ]
+  * d/control: Add netbase to BD's, enabling tests that lookup
+    ports using service names.
+
+ -- Ondřej Nový <novy@ondrej.org>  Sat, 04 Jun 2016 14:12:28 +0200
+
+python-eventlet (0.18.4-3) unstable; urgency=medium
+
+  * REALLY uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 20:51:44 +0000
+
+python-eventlet (0.18.4-2) experimental; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 08:44:20 +0000
+
+python-eventlet (0.18.4-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * Removed greenio_send_was_running_empty_loop_on_ENOTCONN.patch
+    (Applied upstream)
+  * Rebased use-packaged-python-mock-rather-than-embedded.patch
+  * Rebased set-defaults-to-be-tlsv1-not-sslv23.patch
+  * Rebased remove-self.assert-in-tests.patcher_test.py.patch
+  * Added python(3)-dnspython build dependency.
+  * Fixed VCS URLs (https).
+  * Standards-Version is 3.9.7 now (no change).
+  * Fixed upstream changelog.
+  * Added Debian tests.
+  * Added myself as uploader.
+
+  [ Corey Bryant ]
+  * New upstream release.
+
+ -- Ondřej Nový <novy@ondrej.org>  Fri, 26 Feb 2016 21:44:11 +0100
+
+python-eventlet (0.17.4-2) unstable; urgency=medium
+
+  * Added greenio_send_was_running_empty_loop_on_ENOTCONN.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 27 May 2015 21:33:41 +0000
+
+python-eventlet (0.17.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Switched to PKG OpenStack <openstack-devel@lists.alioth.debian.org> team:
+    - Updated Maintainer:.
+    - Fixed VCS URLs (now using Git).
+    - Added openstack-pkg-tools as build-depends.
+    - Filled upstream VCS URL in debian/rules.
+  * Updated debian/copyright.
+  * Added dh-python as build-depends.
+  * Ran wrap-and-sort -t -a.
+  * Removed version for python-greenlet build-depends (the required version is
+    even available in Wheezy, and Jessie is out...).
+  * Removed privacy breach in example/websocket*.html
+  * Removed duplicate doc-base registration.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 27 May 2015 14:01:28 +0200
+
+python-eventlet (0.17.3-4) unstable; urgency=medium
+
+  * Enforce default protocol to be TLSv1 and not SSLv23.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 21 May 2015 17:20:12 +0000
+
+python-eventlet (0.17.3-3) unstable; urgency=medium
+
+  * Enforce TLSv1 always, instead of the more permissive SSLv23.
+  * Standards-Version bumped to 3.9.6.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 21 May 2015 17:09:29 +0000
+
+python-eventlet (0.17.3-2) unstable; urgency=medium
+
+  * Activates --with python3 which was missing.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 09 May 2015 20:58:47 +0000
+
+python-eventlet (0.17.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Added Python 3 package, since upstream has it now.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 08 Feb 2015 12:34:57 +0000
+
+python-eventlet (0.15.2-1) experimental; urgency=medium
+
+  * Team upload.
+  * Added myself as uploader.
+  * New upstream release (Closes: #718036).
+  * Uploading to experimental just before the freeze.
+  * Simplified sphinx-build doc building process.
+  * Refreshed patches.
+  * Using a quilt patch to "unvendorize" mock.py, instead of using
+    debian/rules hacks.
+  * Using extend-diff-ignore to ignore egg-info changes instead of debian/rules
+    hacks. This makes it easier to produce quilt patches.
+  * Ran wrap-and-sort.
+  * Removed now useless X-Python-Version: >= 2.6.
+  * Standards-Version is now 3.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 07 Sep 2014 14:53:19 +0000
+
+python-eventlet (0.13.0-1) unstable; urgency=low
+
+  [ Stefano Rivera ]
+  * Re-add entry for 0.9.16-3 to the changelog, it was accidentally dropped.
+  * Re-apply Uploaders changes from 0.9.16-3 that were lost.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Patches doc to avoid FTBFS.
+  * Allow the unit test to fail, because we have a "test is too long" error.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 09 Sep 2013 08:23:05 +0000
+
+python-eventlet (0.12.1-2) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Thomas Goirand ]
+  * Uploading to sid.
+  * Added rm -rf build in the clean target to be able to rebuild twice.
+  * Removes a failing assert in tests.patcher_test.Threading.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 11 May 2013 03:18:49 +0000
+
+python-eventlet (0.12.1-1) experimental; urgency=low
+
+  * New upstream release, still upload to experimental.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Sat, 02 Mar 2013 18:05:59 +0100
+
+python-eventlet (0.12.0-1) experimental; urgency=low
+
+  * New upstream version.
+  * Uploading to experimental during the freeze.
+  * X-Python-Version now >= 2.6.
+  * Now using compat and debhelper 9.
+  * Requires python-all (>= 2.6.6-3~).
+  * Drops retry-on-timeout and threading-leak patches no longer needed.
+  * Adds Ubuntu patch for disabling failing test.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 22 Feb 2013 07:25:50 +0000
+
+python-eventlet (0.9.16-3) unstable; urgency=low
+
+  * New maintainer (closes: #685319).
+
+  [ Michael Gilbert ]
+  * Depend python-greenlet >= 0.3.1-2.1, which provides the needed egg-info
+    file fixing a build failure (closes: #684852).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Sat, 17 Nov 2012 14:16:24 +0100
+
+python-eventlet (0.9.16-2) unstable; urgency=low
+
+  [ Soren Hansen ]
+  * Add myself to Uploaders.
+
+  [ Stefano Rivera ]
+  * Use dh_sphinxdoc.
+    - Bump python-sphinx Build-Depends.
+    - Remove dh_installdocs override.
+    - Don't manually symlink jquery.js to libjs-jquery.
+  * Don't compress Sphinx _sources.
+  * Include examples.
+  * Apply upstream threading related memory leak patch (Closes: #661781)
+  * Bump Standards-Version to 3.9.3, no changes needed.
+  * Update machine-readable copyright format to 1.0.
+
+ -- Stefano Rivera <stefanor@debian.org>  Wed, 21 Mar 2012 17:31:35 +0200
+
+python-eventlet (0.9.16-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream release.
+  * Dropped reuseaddr.patch: Included upstream.
+
+ -- Soren Hansen <soren@ubuntu.com>  Wed, 08 Jun 2011 15:13:04 +0200
+
+python-eventlet (0.9.15-1) unstable; urgency=low
+
+  * New upstream release.
+    - Drop all patches, accepted upstream.
+  * Correct DEP3 headers (first line of Description is the subject)
+  * Bump Standards-Version to 3.9.2, no changes needed.
+  * Drop Breaks: ${python:Breaks}, no longer used by dh_python2.
+  * debian/copyright: Update to DEP5 Format r174.
+  * Restore doc/modules/zmq.rst and BD on Sphinx 1.0.
+  * reuseaddr.patch: The logic for deciding whether to use SO_REUSEADDR was
+    inverted.
+  * retry-on-timeout.patch: If an operation times out, try one last time.
+    (LP: #771512)
+
+ -- Stefano Rivera <stefanor@debian.org>  Thu, 02 Jun 2011 16:18:16 +0200
+
+python-eventlet (0.9.14-1) unstable; urgency=low
+
+  * Initial release in Debian. (Closes: #532140)
+    - Maintainer is Debian Python Modules team.
+    - Add myself and Monty to Uploaders.
+    - Add Vcs entries.
+  * Change architecture to all, this is a pure-Python module.
+    - Build-Depend on python-all.
+  * Bump debhelper compat and Build-Depend to 8.
+  * Drop unnecessary article from Description.
+  * Switch to dh_python2.
+    - Drop pycompat, deprecated.
+    - Use X-Python-Version instead of pyversions. Bump python-all Build-Depend
+      to 2.6.5-13~.
+    - Breaks: ${python:Breaks}.
+    - Let dh_python2 determine Python dependencies.
+  * Run test suite during build.
+    - Add Build-Depends on python-httplib2, python-nose, python-openssl and
+      python-zmq.
+    - disable-psycopg-patcher-test.patch: Use the postgres_requirement
+      function from tests.db_pool_test in tests.patcher_psycopg_test, to skip
+      unless Postgres is available.
+  * Build Sphinx documentation.
+    - Drop doc/modules/zmq.rst, it isn't used and requires Sphinx 1.0.
+  * Include README.twisted.
+  * Use python-mock instead of bundled module.
+  * Update copyright to the latest format, and rework to group by licence.
+    Include all BSD variants present.
+  * Drop postinst, not of interest to Debian. Ubuntu can drop it after natty.
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 27 Feb 2011 14:20:43 +0200
+
+python-eventlet (0.9.14-0ubuntu2) natty; urgency=low
+
+  * Clean up left over .pyc files.
+
+ -- Soren Hansen <soren@ubuntu.com>  Mon, 14 Feb 2011 15:18:58 +0100
+
+python-eventlet (0.9.14-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * wrap-greenpipe.patch:
+    - Stop eventlet's subprocess module from attempting wrap GreenPipe
+      instances in another layer of GreenPipe.
+
+ -- Soren Hansen <soren@ubuntu.com>  Mon, 14 Feb 2011 11:36:08 +0100
+
+python-eventlet (0.9.13-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+
+ -- Bhavani Shankar <bhavi@ubuntu.com>  Sun, 31 Oct 2010 20:28:03 +0530
+
+python-eventlet (0.9.12-0ubuntu2) maverick; urgency=low
+
+  * Add dependency on python-greenlet (LP: #657047)
+
+ -- Soren Hansen <soren@ubuntu.com>  Fri, 08 Oct 2010 21:49:53 +0200
+
+python-eventlet (0.9.12-0ubuntu1) maverick; urgency=low
+
+  * New upstream release. (FFe: LP: #645899)
+
+ -- Soren Hansen <soren@ubuntu.com>  Tue, 28 Sep 2010 21:20:32 +0200
+
+python-eventlet (0.9.10-0ubuntu1) maverick; urgency=low
+
+  * Initial upload to Ubuntu. (FFe: LP: #620368)
+
+ -- Soren Hansen <soren@ubuntu.com>  Mon, 23 Aug 2010 08:54:30 +0200
