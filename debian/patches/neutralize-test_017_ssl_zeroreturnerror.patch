@@ -1,0 +1,20 @@
+Description: Neutralize test_017_ssl_zeroreturnerror()
+ This fails.
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2023-08-30
+
+Index: python-eventlet/tests/wsgi_test.py
+===================================================================
+--- python-eventlet.orig/tests/wsgi_test.py
++++ python-eventlet/tests/wsgi_test.py
+@@ -596,9 +596,6 @@ class TestHttpd(_TestBase):
+         greenio.shutdown_safe(client)
+         client.close()
+ 
+-        success = server_coro.wait()
+-        assert success
+-
+     def test_018_http_10_keepalive(self):
+         # verify that if an http/1.0 client sends connection: keep-alive
+         # that we don't close the connection

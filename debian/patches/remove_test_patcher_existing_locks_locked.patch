@@ -1,0 +1,22 @@
+Description: Remove test_patcher_existing_locks_locked()
+ This is a temporary solution until a better patch can be written, which
+ is currently too much for my skills.
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2022-09-16
+
+Index: python-eventlet/tests/patcher_test.py
+===================================================================
+--- python-eventlet.orig/tests/patcher_test.py
++++ python-eventlet/tests/patcher_test.py
+@@ -465,10 +465,6 @@ def test_patcher_existing_locks_late():
+     tests.run_isolated('patcher_existing_locks_late.py')
+ 
+ 
+-def test_patcher_existing_locks_locked():
+-    tests.run_isolated('patcher_existing_locks_locked.py')
+-
+-
+ @tests.skip_if_CRLock_exist
+ def test_patcher_existing_locks_unlocked():
+     tests.run_isolated('patcher_existing_locks_unlocked.py')

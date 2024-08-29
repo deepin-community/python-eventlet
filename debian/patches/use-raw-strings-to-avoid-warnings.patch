@@ -1,0 +1,67 @@
+Description: Use raw strings to avoid warnings
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2023-12-23
+
+--- python-eventlet-0.33.3.orig/eventlet/debug.py
++++ python-eventlet-0.33.3/eventlet/debug.py
+@@ -13,7 +13,7 @@ __all__ = ['spew', 'unspew', 'format_hub
+            'hub_prevent_multiple_readers', 'hub_timer_stacks',
+            'hub_blocking_detection']
+ 
+-_token_splitter = re.compile('\W+')
++_token_splitter = re.compile(r'\W+')
+ 
+ 
+ class Spew(object):
+--- python-eventlet-0.33.3.orig/eventlet/green/http/client.py
++++ python-eventlet-0.33.3/eventlet/green/http/client.py
+@@ -52,7 +52,7 @@
+ # 8. By copying, installing or otherwise using Python, Licensee
+ # agrees to be bound by the terms and conditions of this License
+ # Agreement.
+-"""HTTP/1.1 client library
++r"""HTTP/1.1 client library
+ 
+ <intro stuff goes here>
+ <other stuff, too>
+--- python-eventlet-0.33.3.orig/eventlet/green/http/cookiejar.py
++++ python-eventlet-0.33.3/eventlet/green/http/cookiejar.py
+@@ -254,7 +254,7 @@ def _str2time(day, mon, yr, hr, min, sec
+ 
+ STRICT_DATE_RE = re.compile(
+     r"^[SMTWF][a-z][a-z], (\d\d) ([JFMASOND][a-z][a-z]) "
+-    "(\d\d\d\d) (\d\d):(\d\d):(\d\d) GMT$", re.ASCII)
++    r"(\d\d\d\d) (\d\d):(\d\d):(\d\d) GMT$", re.ASCII)
+ WEEKDAY_RE = re.compile(
+     r"^(?:Sun|Mon|Tue|Wed|Thu|Fri|Sat)[a-z]*,?\s*", re.I | re.ASCII)
+ LOOSE_HTTP_DATE_RE = re.compile(
+@@ -331,7 +331,7 @@ def http2time(text):
+     return _str2time(day, mon, yr, hr, min, sec, tz)
+ 
+ ISO_DATE_RE = re.compile(
+-    """^
++    r"""^
+     (\d{4})              # year
+        [-\/]?
+     (\d\d?)              # numerical month
+@@ -465,7 +465,7 @@ def split_header_words(header_values):
+                 pairs = []
+             else:
+                 # skip junk
+-                non_junk, nr_junk_chars = re.subn("^[=\s;]*", "", text)
++                non_junk, nr_junk_chars = re.subn(r"^[=\s;]*", "", text)
+                 assert nr_junk_chars > 0, (
+                     "split_header_words bug: '%s', '%s', %s" %
+                     (orig_text, text, pairs))
+--- python-eventlet-0.33.3.orig/eventlet/green/http/cookies.py
++++ python-eventlet-0.33.3/eventlet/green/http/cookies.py
+@@ -511,7 +511,7 @@ class Morsel(dict):
+ #
+ 
+ _LegalKeyChars  = r"\w\d!#%&'~_`><@,:/\$\*\+\-\.\^\|\)\(\?\}\{\="
+-_LegalValueChars = _LegalKeyChars + '\[\]'
++_LegalValueChars = _LegalKeyChars + r'\[\]'
+ _CookiePattern = re.compile(r"""
+     (?x)                           # This is a verbose pattern
+     \s*                            # Optional whitespace at start of cookie

@@ -16,7 +16,7 @@ Index: python-eventlet/tests/wsgi_test.py
 ===================================================================
 --- python-eventlet.orig/tests/wsgi_test.py
 +++ python-eventlet/tests/wsgi_test.py
-@@ -1611,12 +1611,12 @@ class TestHttpd(_TestBase):
+@@ -1717,12 +1717,12 @@ class TestHttpd(_TestBase):
          request_thread.wait()
          server_sock.close()
  
