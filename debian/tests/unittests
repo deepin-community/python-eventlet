@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+PYTHON3S=$(py3versions -vr 2>/dev/null)
+for i in ${PYTHON3S} ; do
+	python${i} setup.py install --install-layout=deb --root ${CWD}/debian/tmp
+	PYTHONPATH=${CWD}/debian/tmp/usr/lib/python3/dist-packages \
+		PYTHON=python${i} python${i} -m pytest tests -v -k ' not test_018b_http_10_keepalive_framing and not test_fork_after_monkey_patch and not test_clear and not test_noraise_dns_tcp and not test_raise_dns_tcp and not test_dns_methods_are_green'
+done

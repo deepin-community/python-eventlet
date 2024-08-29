@@ -1,3 +1,123 @@
+python-eventlet (0.35.1-3) unstable; urgency=medium
+
+  * Backlist 4 unit tests depending on /etc/resolv.conf (Closes: #1070333):
+    - test_clear
+    - test_noraise_dns_tcp
+    - test_raise_dns_tcp
+    - test_dns_methods_are_green
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 05 Jun 2024 14:10:33 +0200
+
+python-eventlet (0.35.1-2) unstable; urgency=medium
+
+  * Add python3-hatchling as build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 04 Jun 2024 10:27:02 +0200
+
+python-eventlet (0.35.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Usual maintenance: rebase, refresh and remove patches.
+  * Switch to pytest from nose (Closes: #1018489).
+  * Fix d/rules for doc moved to doc/source upstream.
+  * Added python3-sphinxcontrib.apidoc as build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Feb 2024 21:33:39 +0100
+
+python-eventlet (0.33.3-3) unstable; urgency=medium
+
+  * Add use-raw-strings-to-avoid-warnings.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 23 Dec 2023 12:46:45 +0100
+
+python-eventlet (0.33.3-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add patch for Python 3.12, taken from Fedora.
+  * Apply the 823 pull request from github.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 08 Dec 2023 17:22:52 +0100
+
+python-eventlet (0.33.3-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 04 Oct 2023 12:12:28 +0200
+
+python-eventlet (0.33.3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Removed patches applied upstream:
+    - Fix_greendns_for_dnspython_2.3.0+.patch
+    - greenio_GreenPipe_fdopen_with_a_in_mode_raisewd_io.UnsupportedOp....patch
+  * Add neutralize-test_017_ssl_zeroreturnerror.patch (Closes: #1042226).
+  * Cleans better.
+  * Removes the greendns.py hack.
+  * Move-back the package to the OpenStack team, using git-based workflow.
+  * Add salsa-ci.yml.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 30 Aug 2023 12:50:58 +0200
+
+python-eventlet (0.33.1-4) unstable; urgency=medium
+
+  * Remove greendns.py hack to gen the doc.
+  * Blacklist flacky test: test_fork_after_monkey_patch (Closes: #1026478).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 27 Jan 2023 09:47:07 +0100
+
+python-eventlet (0.33.1-3) unstable; urgency=medium
+
+  * Add Fix_greendns_for_dnspython_2.3.0+.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Jan 2023 15:12:58 +0100
+
+python-eventlet (0.33.1-2) unstable; urgency=medium
+
+  * Remove py310-Fix-_fix_py3_rlock.patch.
+  * Do not run tests if DEB_BUILD_OPTIONS=nocheck.
+  * Add remove_test_patcher_existing_locks_locked.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Sep 2022 17:26:15 +0200
+
+python-eventlet (0.33.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Run unit tests at build time.
+  * Add a number of py310 fixes (Closes: #1009112):
+    - py310-Fix-_fix_py3_rlock.patch
+    - py310_fix1.patch
+    - py310_fix-collections.abc.patch
+    - greenio_GreenPipe_fdopen_with_a_in_mode_raisewd_io.UnsupportedO....patch
+  * Exclude tests.wsgi_test.TestHttpd.test_018b_http_10_keepalive_framing().
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 12 Sep 2022 12:19:00 +0200
+
+python-eventlet (0.33.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Refreshed:
+    - 0008-Disable-test_server_connection_timeout_exception.patch
+  * Removed applied upstream:
+    - 0016-imp-rename.patch
+    - Replace-dnspython-_compute_expiration-by-_compute_times.patch
+    - Check_compute_expiration_at_module_level.patch
+    - fix-test_noraise_dns_tcp.patch
+    - python-3.10-1-Only_wrap_socket.timeout_on_Python_lower_than_3.10.patch
+    - python-3.10-2-Get_a_working_greenio._open_on_py310.patch
+    - python-3.10-3-Test_using_eventlet.is_timeout.patch
+    - python-3.10-4-Fix_backdoor_tests_on_py310.patch
+    - python-3.10-5-Tolerate__builtins__being_a_dict_rather_than_module_in_is_timeout.patch
+    - greendns-with-dnspython-2.10.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 15 Feb 2022 17:59:21 +0100
+
+python-eventlet (0.30.2-5) unstable; urgency=medium
+
+  * Add greendns-with-dnspython-2.10.patch (Closes: #999873).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 29 Nov 2021 00:02:15 +0100
+
 python-eventlet (0.30.2-4) unstable; urgency=medium
 
   * Add upstream Python 3.10 patches.

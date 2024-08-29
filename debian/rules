@@ -1,20 +1,22 @@
 #!/usr/bin/make -f
 
+UPSTREAM_GIT := https://github.com/eventlet/eventlet
+include /usr/share/openstack-pkg-tools/pkgos.make
+
 export PYBUILD_NAME=eventlet
 export TRAVIS=true
-export NOSE_PROCESSES=-1
 
 %:
 	dh $@ --with python3,sphinxdoc --buildsystem=pybuild
 
-override_dh_clean:
-	dh_clean
+override_dh_auto_clean:
+	dh_auto_clean
+	find . -iname '*.pyc' -delete
+	for i in $$(find . -type d -iname __pycache__) ; do rm -rf $$i ; done
 
 override_dh_sphinxdoc:
-	cp debian/greendns.py eventlet/support/
-	PYTHONPATH=. python3 -m sphinx -N -b html doc $(CURDIR)/debian/python-eventlet-doc/usr/share/doc/python-eventlet-doc/html
+	PYTHONPATH=. python3 -m sphinx -N -b html doc/source $(CURDIR)/debian/python-eventlet-doc/usr/share/doc/python-eventlet-doc/html
 	dh_sphinxdoc
-	cp debian/greendns.orig.py eventlet/support/greendns.py
 
 override_dh_compress:
 	dh_compress -X.inv -X.txt
@@ -23,4 +25,14 @@ override_dh_installchangelogs:
 	dh_installchangelogs NEWS
 
 override_dh_auto_test:
-	@echo 'Not running tests during build, due to random failures'
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	# Backlist 4 unit tests depending on /etc/resolv.conf:
+	# test_clear
+	# test_noraise_dns_tcp
+	# test_raise_dns_tcp
+	# test_dns_methods_are_green
+	# See upstream issue: https://github.com/eventlet/eventlet/issues/963
+	set -e ; set -x ; for i in $(shell py3versions -vr 2>/dev/null) ; do \
+		PYTHONPATH=. PYTHON=python$$i python$$i -m pytest tests -v -k ' not test_018b_http_10_keepalive_framing and not test_fork_after_monkey_patch and not test_clear and not test_noraise_dns_tcp and not test_raise_dns_tcp and not test_dns_methods_are_green' ; \
+	done
+endif
