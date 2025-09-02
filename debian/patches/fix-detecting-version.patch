@@ -1,0 +1,23 @@
+Description: Fix detecting version
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: no
+Last-Update: 2024-09-24
+
+Index: python-eventlet/pyproject.toml
+===================================================================
+--- python-eventlet.orig/pyproject.toml
++++ python-eventlet/pyproject.toml
+@@ -59,11 +59,8 @@ packages = ['eventlet']
+ where = "evenetlet"
+ exclude = ["tests*", "benchmarks", "examples"]
+ 
+-[tool.hatch]
+-version.source = "vcs"
+-
+-[tool.hatch.build.hooks.vcs]
+-version-file = "eventlet/_version.py"
++[tool.hatch.version]
++path = "eventlet/_version.py"
+ 
+ [tool.ruff]
+ # Might eventually want to add evenetlet/green/, but it's a pain...

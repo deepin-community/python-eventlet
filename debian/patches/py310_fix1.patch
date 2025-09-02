@@ -31,7 +31,7 @@ Index: python-eventlet/tests/wsgi_test.py
 ===================================================================
 --- python-eventlet.orig/tests/wsgi_test.py
 +++ python-eventlet/tests/wsgi_test.py
-@@ -586,7 +586,8 @@ class TestHttpd(_TestBase):
+@@ -600,7 +600,8 @@ class TestHttpd(_TestBase):
          sock = eventlet.wrap_ssl(
              eventlet.listen(('localhost', 0)),
              certfile=certificate_file, keyfile=private_key_file,

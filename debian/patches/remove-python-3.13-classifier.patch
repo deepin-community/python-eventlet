@@ -1,0 +1,16 @@
+Description: Remove Python 3.13 classifier from pyproject.toml
+ This would otherwise prevent doing easy backports to Bookworm.
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: not-needed
+Last-Update: 2025-06-30
+
+--- python-eventlet-0.40.0+2025.06.18.e470c1f493.orig/pyproject.toml
++++ python-eventlet-0.40.0+2025.06.18.e470c1f493/pyproject.toml
+@@ -31,7 +31,6 @@ classifiers = [
+     "Programming Language :: Python :: 3.10",
+     "Programming Language :: Python :: 3.11",
+     "Programming Language :: Python :: 3.12",
+-    "Programming Language :: Python :: 3.13",
+     "Programming Language :: Python",
+     "Topic :: Internet",
+     "Topic :: Software Development :: Libraries :: Python Modules",

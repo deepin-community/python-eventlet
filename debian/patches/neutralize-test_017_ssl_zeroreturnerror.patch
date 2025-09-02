@@ -8,7 +8,7 @@ Index: python-eventlet/tests/wsgi_test.py
 ===================================================================
 --- python-eventlet.orig/tests/wsgi_test.py
 +++ python-eventlet/tests/wsgi_test.py
-@@ -596,9 +596,6 @@ class TestHttpd(_TestBase):
+@@ -610,9 +610,6 @@ class TestHttpd(_TestBase):
          greenio.shutdown_safe(client)
          client.close()
  

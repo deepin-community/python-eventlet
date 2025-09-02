@@ -1,3 +1,141 @@
+python-eventlet (0.40.1-3) unstable; urgency=high
+
+  * CVE-2025-58068: Eventlet is a concurrent networking library for Python.
+    Prior to version 0.40.3, the Eventlet WSGI parser is vulnerable to HTTP
+    Request Smuggling due to improper handling of HTTP trailer sections. This
+    vulnerability could enable attackers to, bypass front-end security
+    controls, launch targeted attacks against active site users, and poison web
+    caches. Applied upstream patch (Closes: #1112515):
+    - Fix_request_smuggling_vulnerability_by_discarding_trailers.patch
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 31 Aug 2025 23:54:47 +0200
+
+python-eventlet (0.40.1-2) unstable; urgency=medium
+
+  * Remove Skip_ident_comparison_to_avoid_crash_on_Python3.13.patch.
+    (Closes: #1109700).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 25 Aug 2025 12:00:28 +0200
+
+python-eventlet (0.40.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Blacklist a number of unit tests that are failing with the current
+    upstream code that adds Python 3.13 compat.
+  * Add remove-python-3.13-classifier.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 13 Jul 2025 16:22:52 +0200
+
+python-eventlet (0.39.1-3) unstable; urgency=medium
+
+  * Add Skip_ident_comparison_to_avoid_crash_on_Python3.13.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 02 Apr 2025 12:34:10 +0200
+
+python-eventlet (0.39.1-2) unstable; urgency=medium
+
+  * Add test_send_1k_req_rep to blacklist, failing on armel.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 01 Apr 2025 16:44:12 +0200
+
+python-eventlet (0.39.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Removed patches appiled upstream:
+    - -python3.13-support.patch
+    - Spew_Correct_line_lookup_from_inspect.getsourcelines.patch
+    - Use_greenthread_s_dead_state_where_possible.patch
+  * Refresh some other patches.
+
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 30 Mar 2025 12:28:58 +0200
+
+python-eventlet (0.36.1-12) unstable; urgency=medium
+
+  * Add test_ssl_close to blacklist of tests (Closes: #1092379).
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 08 Jan 2025 08:21:05 +0100
+
+python-eventlet (0.36.1-11) unstable; urgency=medium
+
+  * Re-blacklist (Closes: #1090270):
+    - test_orig_thread
+    - test_send_1k_pub_sub
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 17 Dec 2024 08:19:23 +0100
+
+python-eventlet (0.36.1-10) unstable; urgency=medium
+
+  * Re-disable these:
+    - test_clear
+    - test_noraise_dns_tcp
+    - test_raise_dns_tcp
+    - test_dns_methods_are_green
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 10 Dec 2024 16:39:15 +0100
+
+python-eventlet (0.36.1-9) unstable; urgency=medium
+
+  * Add Use_greenthread_s_dead_state_where_possible.patch (Closes: #1089050).
+  * Re-enable all tests but:
+    - test_fork_after_monkey_patch
+    - test_cancel_proportion.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 10 Dec 2024 10:01:03 +0100
+
+python-eventlet (0.36.1-8) unstable; urgency=medium
+
+  * Replaced python3.13-support.patch by a new one available at
+    https://github.com/eventlet/eventlet/pull/988.
+  * Add Spew_Correct_line_lookup_from_inspect.getsourcelines.patch, thanks to
+    Stefano Rivera.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 15 Nov 2024 10:22:09 +0100
+
+python-eventlet (0.36.1-7) unstable; urgency=medium
+
+  * Add python3.13-support.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 29 Oct 2024 11:39:29 +0100
+
+python-eventlet (0.36.1-6) unstable; urgency=medium
+
+  * Blacklist test_orig_thread (Closes: #1082997).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 03 Oct 2024 15:08:48 +0200
+
+python-eventlet (0.36.1-5) unstable; urgency=medium
+
+  * Removed python3-six from build-depends (Closes: #1079826).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Sep 2024 12:53:01 +0200
+
+python-eventlet (0.36.1-4) unstable; urgency=medium
+
+  * Fix egg-info and module reported version. (Closes: #1078714).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Sep 2024 10:18:04 +0200
+
+python-eventlet (0.36.1-3) unstable; urgency=medium
+
+  * Refreshed patches.
+  * Add install-all-files.patch.
+  * Run tests in parrallel with -n `nproc` and pytest-xdist.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 20 Sep 2024 11:30:20 +0200
+
+python-eventlet (0.36.1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 19 Sep 2024 16:50:28 +0200
+
+python-eventlet (0.36.1-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 09 Sep 2024 09:43:31 +0200
+
 python-eventlet (0.35.1-3) unstable; urgency=medium
 
   * Backlist 4 unit tests depending on /etc/resolv.conf (Closes: #1070333):

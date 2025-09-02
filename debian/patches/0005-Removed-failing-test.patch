@@ -14,7 +14,7 @@ Index: python-eventlet/tests/patcher_test.py
 ===================================================================
 --- python-eventlet.orig/tests/patcher_test.py
 +++ python-eventlet/tests/patcher_test.py
-@@ -79,9 +79,6 @@ class ImportPatched(ProcessBase):
+@@ -80,9 +80,6 @@ class ImportPatched(ProcessBase):
          assert 'eventlet.green.httplib' not in lines[2], repr(output)
  
  
