@@ -3,6 +3,7 @@ import shutil
 import sys
 import tempfile
 
+import pytest
 import tests
 
 
@@ -513,8 +514,31 @@ def test_threadpoolexecutor():
     tests.run_isolated('patcher_threadpoolexecutor.py')
 
 
+FORK_REASON = "fork() doesn't work well on macOS, and definitely doesn't work on Windows"
+
+
+@pytest.mark.skipif(
+    not sys.platform.startswith("linux"),
+    reason=FORK_REASON
+)
 def test_fork_after_monkey_patch():
     tests.run_isolated('patcher_fork_after_monkey_patch.py')
+
+
+@pytest.mark.skipif(
+    not sys.platform.startswith("linux"),
+    reason=FORK_REASON
+)
+def test_fork_after_monkey_patch_threading():
+    tests.run_isolated('fork_in_main_thread.py')
+
+
+@pytest.mark.skipif(
+    not sys.platform.startswith("linux"),
+    reason=FORK_REASON
+)
+def test_fork_in_thread_after_monkey_patch_threading():
+    tests.run_isolated('fork_in_thread.py')
 
 
 def test_builtin():
@@ -531,3 +555,7 @@ def test_patcher_existing_locks():
 
 def test_patcher_existing_locks_exception():
     tests.run_isolated("patcher_existing_locks_exception.py")
+
+
+def test_patcher_threading_subclass_done():
+    tests.run_isolated("patcher_threading_subclass_done.py")

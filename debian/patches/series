@@ -13,3 +13,7 @@ neutralize-test_017_ssl_zeroreturnerror.patch
 #python3.12.patch
 #823.diff
 #use-raw-strings-to-avoid-warnings.patch
+install-all-files.patch
+fix-detecting-version.patch
+remove-python-3.13-classifier.patch
+CVE-2025-58068_Fix_request_smuggling_vulnerability_by_discarding_trailers.patch

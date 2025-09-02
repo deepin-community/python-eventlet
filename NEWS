@@ -1,6 +1,97 @@
 Unreleased
 ==========
 
+0.40.1
+======
+
+* [fix] "Fix" fork() so it "works" on Python 3.13, and "works" better on older Python versions (#1047)
+  * Behavior change: threads created by eventlet.green.threading.Thread and threading.Thead will be visible across both modules if monkey patching was used. Previously each module would only list threads created in that module.
+  * Bug fix: after fork(), greenlet threads are correctly listed in threading.enumerate() if monkey patching was used. You should not use fork()-without-execve().
+* [fix] Fix patching of removed URLopener class in Python 3.14 (#1053)
+* [fix] ReferenceError except while count rlock (#1042)
+* [fix] Replace deprecated datetime.utcfromtimestamp (#1050)
+* [fix][env] Remove duplicate steps (#1049)
+* [fix] Replace deprecated datetime.datetime.utcnow (#1046)
+
+0.40.0
+======
+
+* [fix] Fix ssl test when linking against openssl 3.5 (#1034)
+* Drop support Python 3.8 (#1021)
+* [doc] Various doc updates (#981, #1033)
+* [env] Drop PyPy support (#1035 #1037)
+
+0.39.1
+======
+
+* [fix] Make LightQueue and derivatives subscriptable (#1027)
+
+0.39.0
+======
+
+* [fix] Remove monotonic from requirements (#1018)
+* [fix] wsgi: Clean up some override logic (#999)
+* [fix] Correct line lookup from inspect.getsourcelines() (#990)
+* Drop support of Python 3.7 (#967)
+* [fix] Calling eventlet.sleep(0) isn't really blocking, so don't blow up (#1015)
+
+
+0.38.2
+======
+
+* [fix] fix the monkey patching with the asyncio hub
+* [feature] introduce the unmonkeypatching feature
+
+0.38.1
+======
+
+* [fix] Python 3.13: Use greenthread's dead state where possible (#1000)
+* [env] bump github Actions (#996)
+* [fix] Fix bug where asyncio hub didn't support multiple os threads (#995)
+
+0.38.0
+======
+
+* Python 3.13 Support (#988)
+* [fix] wsgi: server MUST NOT send Content-Length/Transfer-Encoding header in response with a status code of 1xx, 204 or (2xx to CONNECT request) (#747)
+* [fix] wsgi: No request Content-Length nor Transfer-Encoding implies no body (#985)
+
+
+0.37.0
+======
+
+* [fix] os.read/write waits until file descriptor is ready. https://github.com/eventlet/eventlet/pull/975
+* [fix] Upgrade RLocks as last thing we do https://github.com/eventlet/eventlet/pull/970
+* [security] drop header keys with underscores https://github.com/eventlet/eventlet/pull/959
+* [doc] Various doc updates (Migration Guide, repair links, warns...)
+
+0.36.1
+======
+
+* [fix] eventlet.websocket is not always used from eventlet.wsgi, so do not assume eventlet.set_idle exists https://github.com/eventlet/eventlet/pull/949
+
+0.36.0
+======
+
+* [fix] Make sure asyncio hub doesn't use greendns for asyncio DNS APIs https://github.com/eventlet/eventlet/pull/938
+* [fix] Make asyncio.to_thread work with the same semantics as normal asyncio https://github.com/eventlet/eventlet/pull/930
+* [fix] Refactor congruence checks based on assert at runtime https://github.com/eventlet/eventlet/pull/932
+* [tests] Run tests on macOS in CI, and some fixes to get it in reasonable state (#list https://github.com/eventlet/eventlet/pull/934
+* [fix] Fix wsgi.server shutdown for in-flight requests https://github.com/eventlet/eventlet/pull/912
+* [feature] Add debug convenience helpers - asyncio, threads https://github.com/eventlet/eventlet/pull/925
+* [fix] Handle errors better. https://github.com/eventlet/eventlet/pull/923
+
+0.35.2
+======
+
+* [fix] Fix tool.setuptools/packages list https://github.com/eventlet/eventlet/pull/921
+* [security] Dnspython 2.6.1 - Address DoS via the Tudoor mechanism (CVE-2023-29483) https://github.com/eventlet/eventlet/pull/916
+* [doc] add asyncio into the doc hub page https://github.com/eventlet/eventlet/pull/918
+* [clean] clean obsolete python 2 code from the ssl module https://github.com/eventlet/eventlet/pull/915
+* [fix] Add get_server_info to db_pool.py https://github.com/eventlet/eventlet/pull/324
+* [fix] wsgi: Handle Timeouts from applications https://github.com/eventlet/eventlet/pull/911
+* [fix] shrinks window before connecting https://github.com/eventlet/eventlet/pull/905
+
 0.35.1
 ======
 
